@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const dotenv = require("dotenv");
+dotenv.config();
 
 const authRoutes = require("./routes/authRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
@@ -17,7 +19,7 @@ app.use("/score", scoreRoutes);
 
 // MongoDB Connection
 mongoose
-  .connect("mongodb://localhost:27017/game-app", {
+  .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
